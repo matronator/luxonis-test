@@ -1,4 +1,4 @@
-import './App.css';
+import './App.pcss';
 import React, { useEffect, useState } from 'react';
 import { ApartmentItem } from './components/ApartmentItem';
 import { Apartment } from './entities/Apartment';
@@ -19,12 +19,14 @@ function App() {
       <h1>Apartments</h1>
       <div className='apartments'>
         {apartments.map(apartment => (
-          <ApartmentItem key={apartment.id} apartment={apartment} />
+          <div key={apartment.id} className='apartment-card-wrapper'>
+            <ApartmentItem apartment={apartment} />
+          </div>
         ))}
       </div>
       <div className='pagination'>
         {page > 1 && <button onClick={() => setPage(page - 1)}>Previous</button>}
-        <span>Page {page}</span>
+        <span className='page-number'>Page {page}</span>
         {page < 10 && <button onClick={() => setPage(page + 1)}>Next</button>}
       </div>
     </>

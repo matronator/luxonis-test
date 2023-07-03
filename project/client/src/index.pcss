@@ -48,22 +48,47 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: rgba(255, 255, 255, 0.87);
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.button {
+  transition: all ease-out 200ms;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.87);
+  }
+  
+  &.button-red {
+    background-color: #ff6464;
+    color: #fff;
+
+    &:hover {
+      border-color: #ff6464;
+      color: #ff6464;
+      background-color: transparent;
+    }
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #ededed;
   }
   a:hover {
     color: #747bff;
   }
   button {
     background-color: #f9f9f9;
+    &:hover {
+      border-color: #213547;
+    }
+  }
+  .button:hover {
+    border-color: #213547;
   }
 }

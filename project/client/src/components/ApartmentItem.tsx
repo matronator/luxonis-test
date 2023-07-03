@@ -9,10 +9,16 @@ interface ApartmentItemProps {
 export function ApartmentItem (props: ApartmentItemProps) {
     return (
         <div className='apartment-card'>
-            <h2>{props.apartment.title}</h2>
-            <img src={props.apartment.image} alt={`${props.apartment.subtitle} Image`} />
-            <h4>{props.apartment.subtitle}</h4>
-            <h3>{props.apartment.price}</h3>
+            <img className='card-image' src={props.apartment.image} alt={`${props.apartment.subtitle} Image`} />
+            <div className="card-details">
+                <h2 className='card-title'>{props.apartment.title}</h2>
+                <h4 className='card-subtitle'>{props.apartment.subtitle}</h4>
+                <h3 className='card-price'>{props.apartment.price}</h3>
+            </div>
+            <div className="card-actions">
+                <button className='button'>Details</button>
+                <button className='button button-red'>Add to favorites</button>
+            </div>
         </div>
     );
 }
