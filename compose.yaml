@@ -1,0 +1,55 @@
+services:
+  backend:
+    build:
+      args:
+      - NODE_ENV=development
+      context: project/server
+      target: development
+    command: ./bun run --watch src/index.ts
+    environment:
+      - DATABASE_DB=matronator
+      - DATABASE_USER=matronator
+      - DATABASE_PASSWORD=rootroot
+      - NODE_ENV=development
+    ports:
+      - 3000:3000
+    volumes:
+      - ./project/server/src:/code/src:ro
+      - ./project/server/package.json:/code/package.json
+      - back-notused:/opt/app/node_modules
+    networks:
+      - public
+      - private
+    depends_on:
+      - db
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./init-db.sql:/docker-entrypoint-initdb.d/init.sql"
+      - data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: matronator
+      POSTGRES_PASSWORD: rootroot
+  frontend:
+    build:
+      context: project/client
+      target: development
+    ports:
+      - 8080:80
+      - 8000:5173
+    volumes:
+      - ./project/client/src:/code/src
+      - /code/node_modules
+    networks:
+      - public
+    depends_on:
+      - backend
+networks:
+  public:
+  private:
+volumes:
+  back-notused:
+  data:

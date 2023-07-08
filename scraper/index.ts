@@ -47,10 +47,10 @@ async function scrapeData(pageNum: number = 1) {
     return data;
 }
 
-// 200 = 10 pages
+// 500 = 25 pages
 
 async function main() {
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 25; i++) {
         await scrapeData(i);
     }
 }
